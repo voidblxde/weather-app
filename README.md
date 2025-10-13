@@ -1,57 +1,20 @@
-[![Run in GitHub Web IDE](https://img.shields.io/badge/%E2%96%B6%20Запустить%20CLI%20на%20GitHub.dev-24292e?logo=github&style=for-the-badge)](https://github.dev/voidblxde/weather-app/cli)
 # 🌦 Weather App — мультипроект (CLI → далее API / UI)
 
-Репозиторий организован как **монорепозиторий**, в котором постепенно будут появляться отдельные модули (CLI, backend-сервис, frontend-интерфейс).
 
----
+## 🚀 Запуск в GitHub Codespaces (облачная среда с Maven + Java)
 
-## 📂 Структура проекта
+Можно запустить проект прямо в браузере, без установки Java и Maven локально.
 
-```
-weather-app/
-├── pom.xml              ← Корневой Maven (тип packaging: pom)
-├── README.md           ← Общая документация (этот файл)
-├── cli/               ← Готовое консольное приложение (Maven)
-│   ├── pom.xml
-│   ├── src/
-│   ├── .env.example
-│   └── README.md
-├── service/       
-└── frontend/       
-```
+### ▶ Открыть в Codespaces
 
----
+[![Открыть в GitHub Codespaces](https://img.shields.io/badge/⚡%20Open%20in%20Codespaces-181717?style=for-the-badge&logo=github)](https://github.com/codespaces/new?hide_repo_select=true&ref=main&repo=voidblxde/weather-app)
 
-## 🚀 Как запустить CLI-версию (Windows / PowerShell)
+> После запуска Codespaces выполните команды в терминале:
 
-Перейти в модуль **cli**:
-
-```powershell
+```bash
 cd cli
-```
-
-Создать `.env` на основе `.env.example` и указать ключ API:
-
-```
-YANDEX_WEATHER_KEY=ВАШ_КЛЮЧ
-```
-
-Запуск через Maven (**корректно для PowerShell**):
-
-```powershell
+echo "YANDEX_WEATHER_KEY=ВАШ_КЛЮЧ" > .env   # если .env ещё нет
 mvn compile exec:java "-Dexec.mainClass=Main"
 ```
 
 ---
-
-### ▶ Запуск с параметрами (PowerShell)
-
-```powershell
-mvn compile exec:java "-Dexec.mainClass=Main" "-Dexec.args=--lat=55.75 --lon=37.62 --limit=3"
-```
-
-> При запуске **без параметров** приложение предложит ввести `lat`, `lon`, `limit` вручную, значения по умолчанию применяются по Enter.
-
----
-
-📌 Автор: **voidblxde**
