@@ -1,0 +1,20 @@
+{
+  "name": "Weather CLI Dev Environment",
+  "workspaceFolder": "/workspaces/weather-app/cli",
+  "settings": {
+    "terminal.integrated.defaultProfile.linux": "bash",
+    "files.encoding": "utf8",
+    "editor.renderControlCharacters": false
+  },
+  "image": "mcr.microsoft.com/devcontainers/java:1-21-bullseye",
+  "postCreateCommand": "echo '✅ Dev environment готово. Можно запустить mvn compile exec:java \"-Dexec.mainClass=Main\"'",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "vscjava.vscode-java-pack",
+        "vscjava.vscode-maven",
+        "redhat.java"
+      ]
+    }
+  }
+}
