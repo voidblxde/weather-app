@@ -1,9 +1,10 @@
 {
   "name": "Weather CLI Dev Environment",
-  "build": {
-    "dockerfile": "Dockerfile"
-  },
+  "image": "mcr.microsoft.com/devcontainers/java:1-21",
   "workspaceFolder": "/workspaces/weather-app",
+  "features": {
+    "ghcr.io/devcontainers-extra/features/maven-sdkman:2": {}
+  },
   "customizations": {
     "vscode": {
       "settings": {
@@ -16,5 +17,5 @@
       ]
     }
   },
-  "postCreateCommand": "echo '✅ Среда готова. Запустите: cd cli && mvn compile exec:java \"-Dexec.mainClass=Main\"'"
+  "postCreateCommand": "echo '✅ Java + Maven готовы. Команда запуска: cd cli && mvn compile exec:java \"-Dexec.mainClass=Main\"'"
 }
