@@ -1,0 +1,19 @@
+# Общие
+.git
+.gitignore
+README.md
+**/.idea
+**/.vscode
+**/target
+**/out
+
+# Node/Frontend на будущее
+node_modules
+npm-debug.log
+yarn.lock
+pnpm-lock.yaml
+
+# Локальные окружения
+.env
+**/.env
+**/.env.*
