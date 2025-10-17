@@ -46,17 +46,11 @@ mvn compile exec:java -Dexec.mainClass=Main -Dexec.args="--lat=55.75 --lon=37.62
 
 ## 🐳 Запуск REST API (Spring Boot) через Docker
 
-### 1️⃣ Создайте `.env` в корне проекта (или переименуйте `.env.example`)
-
 ```
-YANDEX_WEATHER_KEY=ВАШ_API_КЛЮЧ_ОТ_ЯНДЕКС_ПОГОДЫ
+echo "YANDEX_WEATHER_KEY=ВАШ_КОД_ОТ_ЯНДЕКС_ПОГОДЫ" > .env
+docker run -d --env-file .env -p 8080:8080 voidblxde/weather-backend:latest
 ```
 
-### 2️⃣ Запустите backend
-
-```bash
-docker compose up --build
-```
 
 После запуска REST API доступен по адресам:
 
