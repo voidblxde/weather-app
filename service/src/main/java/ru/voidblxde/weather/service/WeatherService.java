@@ -2,6 +2,7 @@ package ru.voidblxde.weather.service;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.stereotype.Service;
 
 import java.net.URI;
@@ -19,11 +20,25 @@ public class WeatherService {
     private final ObjectMapper mapper = new ObjectMapper();
 
     public WeatherService() {
-        this.apiKey = System.getenv("YANDEX_WEATHER_KEY");
-        if (this.apiKey == null || this.apiKey.isBlank()) {
-            throw new IllegalStateException("YANDEX_WEATHER_KEY is not set. Pass it via Docker ENV.");
+        // 1) Если Docker передал через ENV — берём
+        String envKey = System.getenv("YANDEX_WEATHER_KEY");
+
+        if (envKey == null || envKey.isBlank()) {
+            // 2) Если нет (локально) — читаем через dotenv из корня
+            Dotenv dotenv = Dotenv.configure()
+                    .directory("../") // <-- путь к корневому .env
+                    .ignoreIfMissing()
+                    .load();
+            envKey = dotenv.get("YANDEX_WEATHER_KEY");
         }
+
+        if (envKey == null || envKey.isBlank()) {
+            throw new IllegalStateException("YANDEX_WEATHER_KEY is not set!");
+        }
+
+        this.apiKey = envKey;
     }
+
 
 
     public Map<String, Object> getWeather(double lat, double lon, int limit) {

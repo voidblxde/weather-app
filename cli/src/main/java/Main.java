@@ -24,7 +24,11 @@ public class Main {
     public static void main(String[] args) throws Exception {
 
         // === 1. Загружаем ключ API из .env ===
-        Dotenv dotenv = Dotenv.load();
+        Dotenv dotenv = Dotenv.configure()
+                .directory("../") // ищем .env в корне монорепы
+                .ignoreIfMissing()
+                .load();
+
         String keyFromEnv = dotenv.get("YANDEX_WEATHER_KEY");
 
         // === 2. Обрабатываем аргументы CLI ===

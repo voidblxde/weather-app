@@ -2,17 +2,9 @@ version: "3.9"
 
 services:
   weather-service:
-    build:
-      context: .
-      dockerfile: service/Dockerfile
-    image: voidblxde/weather-service:local
+    image: voidblxde/weather-backend:latest
+    container_name: weather-api
+    restart: always
+    env_file: .env
     ports:
       - "8080:8080"
-    environment:
-      YANDEX_WEATHER_KEY: ${YANDEX_WEATHER_KEY}
-    healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://localhost:8080/api/ping || exit 1"]
-      interval: 30s
-      timeout: 3s
-      retries: 5
-    restart: unless-stopped

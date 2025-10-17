@@ -21,9 +21,8 @@
 После открытия терминала выполните:
 
 ```bash
-cd cli
-cp .env.example .env              # создаём .env с ключом API
-nano .env                         # вставляем YANDEX_WEATHER_KEY=...
+cp .env.example .env    # .env должен быть в корне проекта с ключом яндекс погоды
+cd cli 
 mvn compile exec:java -Dexec.mainClass=Main
 ```
 
@@ -32,8 +31,8 @@ mvn compile exec:java -Dexec.mainClass=Main
 ## 💻 Запуск CLI локально (Windows / Linux / Mac)
 
 ```bash
+copy .env.example .env           # .env должен быть в корне проекта с ключом яндекс погоды
 cd cli
-copy .env.example .env           # или cp .env.example .env
 mvn compile exec:java -Dexec.mainClass=Main
 ```
 
