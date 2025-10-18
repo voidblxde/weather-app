@@ -7,7 +7,7 @@ services:
     restart: always
     env_file: .env
     ports:
-      - "8080:8080"
+      - "8080"
 
   weather-frontend:
     image: voidblxde/weather-frontend:latest
@@ -15,4 +15,4 @@ services:
     depends_on:
       - weather-service
     ports:
-      - "80:80"
+      - "8081:80"
