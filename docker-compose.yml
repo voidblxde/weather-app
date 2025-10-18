@@ -1,5 +1,3 @@
-version: "3.9"
-
 services:
   weather-service:
     image: voidblxde/weather-backend:latest
@@ -8,3 +6,13 @@ services:
     env_file: .env
     ports:
       - "8080:8080"
+
+  weather-frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: weather-ui
+    depends_on:
+      - weather-service
+    ports:
+      - "3000:3000"
