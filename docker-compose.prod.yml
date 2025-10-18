@@ -1,0 +1,16 @@
+version: "3.9"
+
+services:
+  weather-service:
+    image: voidblxde/weather-backend:latest
+    container_name: weather-api
+    restart: always
+    env_file: .env
+
+  weather-frontend:
+    image: voidblxde/weather-frontend:latest
+    container_name: weather-ui
+    depends_on:
+      - weather-service
+    ports:
+      - "80:80"

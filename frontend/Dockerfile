@@ -1,16 +1,16 @@
-# build stage
-FROM node:20-alpine AS build
+# --- Stage 1: Build frontend ---
+FROM node:18-alpine AS build
 WORKDIR /app
 COPY package*.json ./
-RUN npm ci
+RUN npm install
 COPY . .
 RUN npm run build
 
-# run stage (Nginx)
-FROM nginx:1.27-alpine
+# --- Stage 2: Serve with nginx ---
+FROM nginx:alpine
 WORKDIR /usr/share/nginx/html
 COPY --from=build /app/dist ./
-# простой nginx.conf: статика + прокси /api на сервис
 COPY nginx.conf /etc/nginx/conf.d/default.conf
-EXPOSE 3000
+
+EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
