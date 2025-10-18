@@ -8,6 +8,9 @@ COPY package.json package-lock.json ./
 RUN npm install
 
 # Копируем только исходники фронта
+COPY tsconfig.json tsconfig.json
+COPY tsconfig.app.json tsconfig.app.json
+COPY tsconfig.node.json tsconfig.node.json
 COPY src ./src
 COPY index.html ./
 COPY vite.config.ts ./
