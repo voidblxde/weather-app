@@ -17,6 +17,9 @@ COPY vite.config.ts ./
 COPY tsconfig.json ./
 COPY tailwind.config.js ./
 
+ENV ROLLUP_SKIP_NODE_WARN=true
+RUN npm install rollup
+
 RUN npm run build
 
 # --- Stage 2: Serve with NGINX ---
