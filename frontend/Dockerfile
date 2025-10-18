@@ -1,15 +1,26 @@
 # --- Stage 1: Build frontend ---
 FROM node:18-alpine AS build
 WORKDIR /app
-COPY package*.json ./
+
+# Копируем только фронтенд пакетный менеджер
+COPY package.json package-lock.json ./
+
 RUN npm install
-COPY . .
+
+# Копируем только исходники фронта
+COPY src ./src
+COPY index.html ./
+COPY vite.config.ts ./
+COPY tsconfig.json ./
+COPY tailwind.config.js ./
+
 RUN npm run build
 
-# --- Stage 2: Serve with nginx ---
+# --- Stage 2: Serve with NGINX ---
 FROM nginx:alpine
-WORKDIR /usr/share/nginx/html
-COPY --from=build /app/dist ./
+COPY --from=build /app/dist /usr/share/nginx/html
+
+# Прокси на backend
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
